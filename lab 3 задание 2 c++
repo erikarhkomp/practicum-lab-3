@@ -2,11 +2,14 @@
 #include <cmath>
 using namespace std;
 
+
 double f(double x) {
     return exp(-2*x) * sin(3*x);
 }
 
-// Метод прямоугольников
+
+// Метод прямоугольников:
+
 double rectangle_method(double a, double b, int n) {
     double h = (b - a) / n;
     double sum = 0.0;
@@ -16,7 +19,8 @@ double rectangle_method(double a, double b, int n) {
     return h * sum;
 }
 
-// Метод трапеций
+// Метод трапеций:
+
 double trapezoidal_method(double a, double b, int n) {
     double h = (b - a) / n;
     double sum = 0.5 * (f(a) + f(b));
@@ -26,7 +30,9 @@ double trapezoidal_method(double a, double b, int n) {
     return h * sum;
 }
 
-// Метод Симпсона
+
+// Метод Симпсона:
+
 double simpson_method(double a, double b, int n) {
     double h = (b - a) / n;
     double sum = f(a) + f(b);
@@ -43,6 +49,7 @@ int main() {
     double a = 0.0; 
     int n = 1;
     double result_rect, result_trap, result_simpson;
+
     
     do {
         result_rect = rectangle_method(a, INFINITY, n);
@@ -51,9 +58,11 @@ int main() {
         n *= 2;
     } while (abs(result_rect - result_trap) >= 1e-6 && abs(result_trap - result_simpson) >= 1e-6);
 
+
     cout << "Значение интеграла методом прямоугольников: " << result_rect << endl;
      cout << "Значение интеграла методом трапеций: " << result_trap <<  endl;
      cout << "Значение интеграла методом Симпсона: " << result_simpson <<  endl;
+
 
     return 0;
 }
